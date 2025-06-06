@@ -1,0 +1,74 @@
+ Working and understanding VPN
+
+Objective:
+Understand how VPNs protect privacy and encrypt communication.
+
+🛠 Tools & Requirements
+- OS: Kali Linux 
+- Tool: [`kalitorify`](https://github.com/brainfucksec/kalitorify)
+- Dependencies: `tor`, `iptables`, `scrot` (for screenshots)
+- Websites used for verification:
+
+  - [https://dnsleaktest.com](https://dnsleaktest.com)
+
+---
+
+## 📥 Installation & Setup
+
+### 1️⃣ Clone Kalitorify
+git clone https://github.com/brainfucksec/kalitorify.git
+cd kalitorify
+sudo apt update
+sudo apt install -y tor
+chmod +x kalitorify.sh
+sudo ./kalitorify.sh --tor
+
+Verification
+
+ DNS Leak Test
+Visited https://dnsleaktest.com
+
+Result: No DNS leak. DNS server shown was from the Tor network, not ISP. ✔️
+| Feature             | Description                                       |
+| ------------------- | ------------------------------------------------- |
+| Full anonymity      | Routes all traffic (not just browser) through Tor |
+| DNS leak protection | Ensures DNS requests go through Tor DNSPort       |
+| Easy toggle         | Start/stop Tor routing via simple CLI             |
+| Lightweight         | Works without heavy VPN or browser extensions     |
+
+
+⚠️ Limitations
+Internet speed is slower due to Tor routing
+
+Some websites block Tor exit nodes
+
+Not a substitute for commercial VPNs when speed is needed
+
+ Disconnect VPN
+
+kalitorify --clearnet
+
+Re-check IP at https://dnsleaktest.com
+
+Note the difference.
+
+Research: VPN Features in Kalitorify
+It provides VPN-like privacy and security features by routing all Kali Linux traffic through the Tor network using a transparent proxy setup.
+| Feature                           | Description                                                               |
+| --------------------------------- | ------------------------------------------------------------------------- |
+| ✅ **IP Masking**                  | Hides real IP address by routing traffic through Tor exit nodes           |
+| ✅ **DNS Leak Protection**         | Uses Tor’s built-in DNS server (`DNSPort`) to prevent DNS leaks           |
+| ✅ **System-wide Traffic Routing** | Redirects all network traffic (not just browser) through Tor              |
+| ✅ **Encryption**                  | Traffic is encrypted through the Tor network during transit               |
+| ✅ **Bypass Censorship**           | Can access blocked content and .onion websites                            |
+| ✅ **No Logs**                     | Tor is decentralized and doesn’t log your traffic like some VPN providers |
+
+ Typical Impact on Browsing Speed:
+
+| Connection Type | Speed             | Security            | When to Use                                        |
+| --------------- | ----------------- | ------------------- | -------------------------------------------------- |
+| Normal          | Fastest           | Minimal             | Everyday casual browsing                           |
+| VPN             | Slower (variable) | Encrypted & private | When privacy, anonymity, or geo-spoofing is needed |
+
+
+
